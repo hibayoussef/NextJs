@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 export default function Navbar() {
   const classes = useStyles();
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, marginBottom: 3 }}>
       <AppBar
         position="static"
         style={{
@@ -63,14 +63,16 @@ export default function Navbar() {
             }}
             className={classes.groupButton}
           >
-            <Button color="inherit" className={classes.link}>
-              <Link href="/">Home</Link>
-            </Button>
-            <Button color="inherit">
-              <Link href="/about">About me</Link>
-            </Button>
-            <Button color="inherit">
-              <Link href="/cart">Cart</Link>
+            <Button
+              color="inherit"
+              className={classes.link}
+              style={{
+                fontWeight: "bold",
+                fontSize: "1.3rem",
+                fontFamily: "Rubik Moonrocks",
+              }}
+            >
+              Logout
             </Button>
           </Box>
         </Toolbar>

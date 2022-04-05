@@ -6,6 +6,8 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Head from "next/head";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -33,18 +35,43 @@ function Index({ products }) {
   const classes = useStyles();
   return (
     <>
-      <Typography
-        variant="h4"
-        gutterBottom
-        component="div"
-        className={classes.typo}
-      >
-        Our Products
-      </Typography>
-      <Box sx={{ flexGrow: 1 }} className={classes.main}>
+      <Head>
+        <title>Solek</title>
+      </Head>
+      <Grid>
+        <Grid item xs={6} md={8}>
+          <Item>
+            {" "}
+            <Typography
+              variant="h4"
+              gutterBottom
+              component="div"
+              className={classes.typo}
+            >
+              Our Products
+            </Typography>
+          </Item>
+        </Grid>
+        <Grid
+          item
+          xs={4}
+          md={4}
+          style={{
+            direction: "row",
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
+        >
+          <Item>
+            {" "}
+            <Button>Add New Product</Button>
+          </Item>
+        </Grid>
+      </Grid>
+      <Box sx={{ flexGrow: 1, margin: 8 }}>
         <Grid container spacing={3}>
           {products.map((product, index) => (
-            <Grid item xs={5} sm={4} md={3} key={index}>
+            <Grid item xs={12} sm={6} md={3} key={index}>
               <Item>
                 {" "}
                 <Product key={product.id} product={product} />;
