@@ -10,19 +10,27 @@ import Link from "next/link";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
-  groupButton: {
-    marginLeft: "auto",
+  main: {
+    margin: "4rem",
+    // marginTop: "4rem",
   },
-  lowerCase: {
+  link: {
     textDecoration: "none",
+    textTransform: "capitalize",
   },
 });
 
-export default function ButtonAppBar() {
+export default function Navbar() {
   const classes = useStyles();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        style={{
+          backgroundColor: "#ffc400",
+          padding: "0.5rem",
+        }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -33,7 +41,15 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div">
+          <Typography
+            variant="h4"
+            component="div"
+            style={{
+              fontWeight: "bold",
+
+              fontFamily: "Rubik Moonrocks",
+            }}
+          >
             Solek
           </Typography>
           <Box
@@ -41,10 +57,13 @@ export default function ButtonAppBar() {
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
               ml: 10,
+              direction: "row",
+              justifyContent: "flex-end",
+              alignItems: "center",
             }}
             className={classes.groupButton}
           >
-            <Button color="inherit">
+            <Button color="inherit" className={classes.link}>
               <Link href="/">Home</Link>
             </Button>
             <Button color="inherit">
