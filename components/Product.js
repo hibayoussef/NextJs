@@ -3,13 +3,7 @@ import Button from "@mui/material/Button";
 import Link from "next/link";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles({
-  button: {
-    backgroundColor: "#ffc400",
-    padding: 5,
-    textDecoration: "none",
-  },
-});
+const useStyles = makeStyles({});
 
 const Product = ({ product }) => {
   const classes = useStyles();
@@ -23,7 +17,7 @@ const Product = ({ product }) => {
 
         <div>{title}</div>
         <div>{price}$</div>
-        <div className={classes.button}>
+        <div>
           <Link href={`/products/${id}`}>More Details</Link>
         </div>
       </div>

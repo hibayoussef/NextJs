@@ -10,45 +10,60 @@ import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import Image from "next/image";
+import Grid from "@mui/material/Grid";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { breakpoints } from "@mui/system";
 
 const singleProduct = ({ product }) => {
   const { title, price, id, description, category, image } = product;
   const theme = useTheme();
+  const breakpoint = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Card sx={{ display: "flex", margin: 10, padding: 13 }}>
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <CardContent sx={{ flex: "1 0 auto" }}>
-          <Typography component="div" variant="h5">
-            {title}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            component="div"
-          >
-            {description}
-          </Typography>
+    <Card sx={{ margin: 5, padding: 8, boxShadow: 2 }}>
+      <Grid container direction={breakpoint ? "column" : "row"}>
+        {/* second Grid */}
+        <Grid xs={12} sm={3}>
+          <Image src={image} width="250" height="300" />
+        </Grid>
 
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            component="div"
-          >
-            {category}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            component="div"
-            style={{ color: "#ffc400", fontWeight: "bold", fontSize: "1.5rem" }}
-          >
-            {price}$
-          </Typography>
-        </CardContent>
-      </Box>
+        {/* first grid */}
 
-      <Image src={image} width="600" height="300" />
+        <Grid xs={12} sm={9} direction="row">
+          <Grid xs={12} sm={12}>
+            <Typography
+              component="div"
+              variant="h5"
+              style={{ marginBottom: "1rem" }}
+            >
+              {title}
+            </Typography>
+          </Grid>
+          <Grid xs={12} sm={12}>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+            >
+              {description}
+            </Typography>
+          </Grid>
+          <Grid xs={12} sm={12}>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+              style={{
+                color: "#ffc400",
+                fontWeight: "bold",
+                fontSize: "1.5rem",
+              }}
+            >
+              {price}$
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
     </Card>
   );
 };
