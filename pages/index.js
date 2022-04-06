@@ -8,6 +8,8 @@ import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import Head from "next/head";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -20,52 +22,56 @@ const Item = styled(Paper)(({ theme }) => ({
 const useStyles = makeStyles({
   main: {
     padding: "4rem !important",
-    // marginTop: "4rem",
   },
   typo: {
-    margin: "auto",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: "4rem",
+    color: "#ffc400 !impoertant",
+    fontWeight: 600,
+  },
+  button: {
+    textTransform: "none",
+    backgroundColor: "#ffc400",
+    color: "white",
+    padding: 14,
   },
 });
 
 function Index({ products }) {
+  const theme = useTheme();
+  const breakpoint = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
   return (
     <>
       <Head>
         <title>Solek</title>
       </Head>
-      <Grid>
-        <Grid item xs={6} md={8}>
-          <Item>
-            {" "}
-            <Typography
-              variant="h4"
-              gutterBottom
-              component="div"
-              className={classes.typo}
-            >
-              Our Products
-            </Typography>
-          </Item>
+      <Grid
+        container
+        direction={breakpoint ? "column" : "row"}
+        style={{ margin: "4rem" }}
+      >
+        <Grid item xs={12} sm={9} md={9}>
+          <Typography
+            variant="h4"
+            gutterBottom
+            component="div"
+            // className={classes.typo}
+            style={{ color: "#ffc400 !impoertant", fontWeight: 600 }}
+          >
+            Our Products
+          </Typography>
         </Grid>
         <Grid
           item
-          xs={4}
-          md={4}
+          xs={12}
+          md={3}
+          sm={3}
           style={{
             direction: "row",
             justifyContent: "flex-end",
             alignItems: "center",
           }}
         >
-          <Item>
-            {" "}
-            <Button>Add New Product</Button>
-          </Item>
+          <Button className={classes.button}>Add New Product</Button>
         </Grid>
       </Grid>
       <Box sx={{ flexGrow: 1, margin: 8 }}>
