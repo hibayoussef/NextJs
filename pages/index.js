@@ -10,6 +10,8 @@ import Button from "@mui/material/Button";
 import Head from "next/head";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import Dialog from "../components/Dialog";
+import axios from "axios";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -27,13 +29,25 @@ const useStyles = makeStyles({
     color: "#ffc400 !impoertant",
     fontWeight: 600,
   },
-  button: {
-    textTransform: "none",
-    backgroundColor: "#ffc400",
-    color: "white",
-    padding: 14,
-  },
+  // button: {
+  //   textTransform: "none !important",
+  //   backgroundColor: "#ffc400 !important",
+  //   color: "white  !important",
+  //   padding: 14,
+  // },
 });
+
+export async function getStaticProps() {
+  const req = await axios.get("https://fakestoreapi.com/products");
+  const products = await req.data;
+
+  console.log("response that comes from backend: ", products);
+  return {
+    props: {
+      products,
+    },
+  };
+}
 
 function Index({ products }) {
   const theme = useTheme();
@@ -71,12 +85,12 @@ function Index({ products }) {
             alignItems: "center",
           }}
         >
-          <Button className={classes.button}>Add New Product</Button>
+          <Dialog />
         </Grid>
       </Grid>
       <Box sx={{ flexGrow: 1, margin: 8 }}>
         <Grid container spacing={3}>
-          {products.map((product, index) => (
+          {products?.map((product, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
               <Item>
                 {" "}
@@ -91,16 +105,3 @@ function Index({ products }) {
 }
 
 export default Index;
-
-export async function getStaticProps() {
-  const req = await fetch("https://fakestoreapi.com/products");
-  const products = await req.json();
-
-  // console.log("response that comes from backend: ", req);
-
-  return {
-    props: {
-      products,
-    },
-  };
-}
