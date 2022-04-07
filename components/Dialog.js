@@ -12,10 +12,8 @@ import axios from "axios";
 
 const useStyles = makeStyles({
   button: {
-    textTransform: "none !important",
     backgroundColor: "#ffc400 !important",
-    color: "white  !important",
-    padding: 14,
+    color: "white",
   },
   buttonUpload: {
     backgroundColor: "#ffc400 !important",
@@ -29,21 +27,48 @@ const useStyles = makeStyles({
   },
 });
 
-const submitDetails = async (title, price, description, image, category) => {
-  return await axios("https://fakestoreapi.com/products", {
+export default function FormDialog() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const newLocal = false;
+  const [selectedFile, setSelectedFile] = React.useState(newLocal);
+  const [title, setTitle] = React.useState("");
+  const [price, setPrice] = React.useState(null);
+  const [description, setDescription] = React.useState("");
+  const [category, setCategory] = React.useState("");
+
+  function fileSelectedHandler(event) {
+    console.log(event.target.files[0]);
+    selectedFile: event.target.files[0], setSelectedFile(event.target.files[0]);
+  }
+
+  const fileUploadHandler = async ({
     title,
     price,
     description,
     image,
     category,
-  }).then((res) => {
-    console.log("response: ", res.data);
-  });
-};
-export default function FormDialog() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  }) => {
+    console.log("title: ", title);
+    console.log("price: ", price);
+    console.log("description: ", description);
+    console.log("image: ", image);
+    console.log("category: ", category);
+    const fd = new FormData();
+    fd.append("image", setSelectedFile);
+    // I think what you missing is the header to inform the axios as multi part request
+    fd.append(
+      "data",
+      JSON.stringify({ title, price, description, image, category })
+    );
+    const response = await axios.post("https://fakestoreapi.com/products", fd, {
+      headers: {
+        "Content-type": "multipart/form-data",
+      },
+    });
 
+    console.log(response);
+  };
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -52,19 +77,29 @@ export default function FormDialog() {
     setOpen(false);
   };
 
+  const onSendMsg = () => {
+    handleClose();
+    fileUploadHandler();
+  };
+
   return (
     <div>
-      <Button className={classes.button} onClick={handleClickOpen}>
+      <Button
+        className={classes.button}
+        style={{ padding: 14 }}
+        onClick={handleClickOpen}
+      >
         Add New Product
       </Button>
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Create Product</DialogTitle>
+
         <DialogContent>
           <DialogContentText style={{ marginBottom: 14 }}>
             Please fill in the fields to create a product.
           </DialogContentText>
-          <input
+          {/* <input
             accept="image/*"
             type="file"
             id="select-image"
@@ -78,8 +113,22 @@ export default function FormDialog() {
             >
               Upload Image
             </Button>
-          </label>
+          </label> */}
 
+          {/* <input type="file" onChange={fileSelectedHandler} /> */}
+
+          <input
+            type="file"
+            id="select-image"
+            style={{ display: "none" }}
+            // value={selectedFile}
+            onChange={fileSelectedHandler}
+          />
+          <label htmlFor="select-image">
+            <Button variant="contained" color="primary" component="span">
+              Upload Image
+            </Button>
+          </label>
           <TextField
             autoFocus
             margin="dense"
@@ -88,6 +137,8 @@ export default function FormDialog() {
             type="text"
             fullWidth
             variant="standard"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <TextField
             autoFocus
@@ -97,6 +148,8 @@ export default function FormDialog() {
             type="number"
             fullWidth
             variant="standard"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
           />
           <TextField
             autoFocus
@@ -106,6 +159,8 @@ export default function FormDialog() {
             type="text"
             fullWidth
             variant="standard"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
           <TextField
             autoFocus
@@ -115,12 +170,17 @@ export default function FormDialog() {
             type="text"
             fullWidth
             variant="standard"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
           />
         </DialogContent>
+
         <DialogActions>
           <Button
             className={classes.diaButton}
-            onClick={submitDetails(price, description, category, title, image)}
+            // onClick={handleClose}
+            // type="submit"
+            onClick={fileUploadHandler}
           >
             Create
           </Button>

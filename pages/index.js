@@ -23,11 +23,10 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const useStyles = makeStyles({
   main: {
-    padding: "4rem !important",
+    padding: "4rem ",
   },
   typo: {
     color: "#ffc400 !impoertant",
-    fontWeight: 600,
   },
   // button: {
   //   textTransform: "none !important",
@@ -41,7 +40,6 @@ export async function getStaticProps() {
   const req = await axios.get("https://fakestoreapi.com/products");
   const products = await req.data;
 
-  console.log("response that comes from backend: ", products);
   return {
     props: {
       products,
@@ -69,7 +67,7 @@ function Index({ products }) {
             gutterBottom
             component="div"
             // className={classes.typo}
-            style={{ color: "#ffc400 !impoertant", fontWeight: 600 }}
+            style={{ fontWeight: 600 }}
           >
             Our Products
           </Typography>
