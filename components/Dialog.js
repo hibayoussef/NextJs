@@ -39,35 +39,27 @@ export default function FormDialog() {
 
   function fileSelectedHandler(event) {
     console.log(event.target.files[0]);
-    selectedFile: event.target.files[0], setSelectedFile(event.target.files[0]);
+    setSelectedFile(event.target.files[0]);
   }
 
-  const fileUploadHandler = async ({
-    title,
-    price,
-    description,
-    image,
-    category,
-  }) => {
-    console.log("title: ", title);
-    console.log("price: ", price);
-    console.log("description: ", description);
-    console.log("image: ", image);
-    console.log("category: ", category);
+  const fileUploadHandler = async () => {
+    // console.log("title: ", title);
+    // console.log("price: ", price);
+    // console.log("description: ", description);
+    // console.log("image: ", image);
+    // console.log("category: ", category);
+    console.log(selectedFile);
     const fd = new FormData();
-    fd.append("image", setSelectedFile);
+    fd.append("image", selectedFile);
     // I think what you missing is the header to inform the axios as multi part request
-    fd.append(
-      "data",
-      JSON.stringify({ title, price, description, image, category })
-    );
-    const response = await axios.post("https://fakestoreapi.com/products", fd, {
+    fd.append("data", JSON.stringify({ title, price, description, category }));
+    await axios.post("https://fakestoreapi.com/products", fd, {
       headers: {
         "Content-type": "multipart/form-data",
       },
     });
 
-    console.log(response);
+    // console.log(response);
   };
   const handleClickOpen = () => {
     setOpen(true);
