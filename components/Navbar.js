@@ -61,15 +61,18 @@ export default function Navbar() {
               justifyContent: "flex-end",
               alignItems: "center",
             }}
-            className={classes.groupButton}
+            // className={classes.groupButton}
           >
             <Button
               color="inherit"
-              className={classes.link}
+              // className={classes.link}
               style={{
                 fontWeight: "bold",
                 fontSize: "1.3rem",
                 fontFamily: "Rubik Moonrocks",
+
+                textDecoration: "none",
+                textTransform: "capitalize",
               }}
             >
               Logout

@@ -11,20 +11,12 @@ import Image from "next/image";
 import axios from "axios";
 
 const useStyles = makeStyles({
-  button: {
-    backgroundColor: "#ffc400 !important",
-    color: "white",
-  },
+  button: {},
   buttonUpload: {
     backgroundColor: "#ffc400 !important",
     color: "white  !important",
   },
-  diaButton: {
-    textTransform: "none !important",
-    color: "#ffc400 !important",
-    padding: 14,
-    fontWeight: 500,
-  },
+  diaButton: {},
 });
 
 export default function FormDialog() {
@@ -33,7 +25,7 @@ export default function FormDialog() {
   const newLocal = false;
   const [selectedFile, setSelectedFile] = React.useState(newLocal);
   const [title, setTitle] = React.useState("");
-  const [price, setPrice] = React.useState(null);
+  const [price, setPrice] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [category, setCategory] = React.useState("");
 
@@ -77,8 +69,11 @@ export default function FormDialog() {
   return (
     <div>
       <Button
-        className={classes.button}
-        style={{ padding: 14 }}
+        style={{
+          padding: 14,
+          backgroundColor: "#ffc400 !important",
+          color: "white",
+        }}
         onClick={handleClickOpen}
       >
         Add New Product
@@ -91,29 +86,11 @@ export default function FormDialog() {
           <DialogContentText style={{ marginBottom: 14 }}>
             Please fill in the fields to create a product.
           </DialogContentText>
-          {/* <input
-            accept="image/*"
-            type="file"
-            id="select-image"
-            style={{ display: "none" }}
-          />
-          <label htmlFor="select-image">
-            <Button
-              className={classes.buttonUpload}
-              variant="contained"
-              component="span"
-            >
-              Upload Image
-            </Button>
-          </label> */}
-
-          {/* <input type="file" onChange={fileSelectedHandler} /> */}
 
           <input
             type="file"
             id="select-image"
             style={{ display: "none" }}
-            // value={selectedFile}
             onChange={fileSelectedHandler}
           />
           <label htmlFor="select-image">
@@ -169,14 +146,28 @@ export default function FormDialog() {
 
         <DialogActions>
           <Button
-            className={classes.diaButton}
+            // className={classes.diaButton}
             // onClick={handleClose}
             // type="submit"
+            style={{
+              textTransform: "none !important",
+              color: "#ffc400 !important",
+              padding: 14,
+              fontWeight: 500,
+            }}
             onClick={fileUploadHandler}
           >
             Create
           </Button>
-          <Button className={classes.diaButton} onClick={handleClose}>
+          <Button
+            style={{
+              textTransform: "none !important",
+              color: "#ffc400 !important",
+              padding: 14,
+              fontWeight: 500,
+            }}
+            onClick={handleClose}
+          >
             Cancel
           </Button>
         </DialogActions>

@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { breakpoints } from "@mui/system";
 
-const singleProduct = ({ product }) => {
+const SingleProduct = ({ product }) => {
   const { title, price, id, description, category, image } = product;
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("sm"));
@@ -16,14 +16,14 @@ const singleProduct = ({ product }) => {
     <Card sx={{ margin: 5, padding: 8, boxShadow: 2 }}>
       <Grid container direction={breakpoint ? "column" : "row"}>
         {/* second Grid */}
-        <Grid xs={12} sm={3}>
-          <Image src={image} width="250" height="300" />
+        <Grid item xs={12} sm={3}>
+          <Image alt="image" src={image} width="250" height="300" />
         </Grid>
 
         {/* first grid */}
 
-        <Grid xs={12} sm={9} direction="row">
-          <Grid xs={12} sm={12}>
+        <Grid container item xs={12} sm={9} direction="row">
+          <Grid item xs={12} sm={12}>
             <Typography
               component="div"
               variant="h5"
@@ -32,7 +32,7 @@ const singleProduct = ({ product }) => {
               {title}
             </Typography>
           </Grid>
-          <Grid xs={12} sm={12}>
+          <Grid item xs={12} sm={12}>
             <Typography
               variant="subtitle1"
               color="text.secondary"
@@ -41,7 +41,7 @@ const singleProduct = ({ product }) => {
               {description}
             </Typography>
           </Grid>
-          <Grid xs={12} sm={12}>
+          <Grid item xs={12} sm={12}>
             <Typography
               variant="subtitle1"
               color="text.secondary"
@@ -61,7 +61,7 @@ const singleProduct = ({ product }) => {
   );
 };
 
-export default singleProduct;
+export default SingleProduct;
 
 export async function getStaticPaths() {
   const req = await fetch("https://fakestoreapi.com/products");

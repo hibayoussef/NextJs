@@ -44,7 +44,7 @@ const Product = ({ product }) => {
         <Grid item>
           <Grid item>
             {/* <div style={{ paddingBottom: 6 }}> */}
-            <Image src={image} width="200" height="200" />
+            <Image alt="image" src={image} width="200" height="200" />
             {/* </div> */}
           </Grid>
           <Grid item style={{ paddingBottom: 6 }}>
