@@ -72,7 +72,6 @@ const Product = ({ index, removeItem, product }) => {
               aria-label="delete"
               onClick={() => {
                 removeItem(index);
-                handleClick;
                 console.log("id: ", index);
               }}
             >
