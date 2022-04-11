@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { breakpoints } from "@mui/system";
 import Link from "@mui/material/Link";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
@@ -42,8 +41,6 @@ const SingleProduct = ({ product }) => {
           <Grid item xs={12} sm={3}>
             <Image alt="image" src={image} width="250" height="300" />
           </Grid>
-
-          {/* first grid */}
 
           <Grid container item xs={12} sm={9} direction="row">
             <Grid item xs={12} sm={12}>

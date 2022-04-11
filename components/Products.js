@@ -10,7 +10,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Dialog from "./Dialog";
 import Product from "./Product";
-import { getAllProducts, deleteProduct } from "../services/ECommerceServices";
+import { deleteProduct } from "../services/ECommerceServices";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -27,19 +27,12 @@ const useStyles = makeStyles({
   typo: {
     color: "#ffc400 !impoertant",
   },
-  // button: {
-  //   textTransform: "none !important",
-  //   backgroundColor: "#ffc400 !important",
-  //   color: "white  !important",
-  //   padding: 14,
-  // },
 });
 
 function Products({ products }) {
   console.log("check: ", products);
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("sm"));
-  //   const [pro, setProducts] = React.useState([]);
 
   function removeItem(index) {
     deleteProduct(index);
@@ -62,7 +55,6 @@ function Products({ products }) {
             variant="h4"
             gutterBottom
             component="div"
-            // className={classes.typo}
             style={{ fontWeight: 600, color: "#ffc400" }}
           >
             Our Products

@@ -1,5 +1,4 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Link from "next/link";
 import { makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
@@ -32,17 +31,10 @@ const Product = ({ index, removeItem, product }) => {
   const { title, price, image, id } = product;
   return (
     <>
-      {/* <div style={{ padding: 13 }}> */}
-      <Grid
-        container
-        // direction={breakpoint ? "row" : "row"}
-        style={{ padding: 10 }}
-      >
+      <Grid container style={{ padding: 10 }}>
         <Grid item>
           <Grid item>
-            {/* <div style={{ paddingBottom: 6 }}> */}
             <Image alt="image" src={image} width="200" height="200" />
-            {/* </div> */}
           </Grid>
           <Grid item style={{ paddingBottom: 6 }}>
             {title}
@@ -57,13 +49,7 @@ const Product = ({ index, removeItem, product }) => {
           direction={breakpoint ? "column" : "row"}
           style={{ paddingLeft: 2 }}
         >
-          <Grid
-            item
-            xs={12}
-            sm={8}
-            style={{ paddingTop: 9 }}
-            // className={classes.linkStyle}
-          >
+          <Grid item xs={12} sm={8} style={{ paddingTop: 9 }}>
             <Link style={{ textDecoration: "none" }} href={`/products/${id}`}>
               <a style={{ textDecoration: "none" }}>
                 {" "}
@@ -93,7 +79,6 @@ const Product = ({ index, removeItem, product }) => {
           </Grid>
         </Grid>
       </Grid>
-      {/* </div> */}
     </>
   );
 };

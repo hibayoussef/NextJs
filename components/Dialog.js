@@ -6,21 +6,9 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { makeStyles } from "@mui/styles";
-import Image from "next/image";
 import axios from "axios";
 
-const useStyles = makeStyles({
-  button: {},
-  buttonUpload: {
-    backgroundColor: "#ffc400 !important",
-    color: "white  !important",
-  },
-  diaButton: {},
-});
-
 export default function FormDialog() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const newLocal = false;
   const [selectedFile, setSelectedFile] = React.useState(newLocal);
@@ -38,15 +26,12 @@ export default function FormDialog() {
     console.log(selectedFile);
     const fd = new FormData();
     fd.append("image", selectedFile);
-    // I think what you missing is the header to inform the axios as multi part request
     fd.append("data", JSON.stringify({ title, price, description, category }));
     await axios.post("https://fakestoreapi.com/products", fd, {
       headers: {
         "Content-type": "multipart/form-data",
       },
     });
-
-    // console.log(response);
   };
   const handleClickOpen = () => {
     setOpen(true);
@@ -54,11 +39,6 @@ export default function FormDialog() {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const onSendMsg = () => {
-    handleClose();
-    fileUploadHandler();
   };
 
   return (
@@ -141,9 +121,6 @@ export default function FormDialog() {
 
         <DialogActions>
           <Button
-            // className={classes.diaButton}
-            // onClick={handleClose}
-            // type="submit"
             style={{
               textTransform: "none !important",
               color: "#ffc400 !important",

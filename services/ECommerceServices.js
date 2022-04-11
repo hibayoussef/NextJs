@@ -2,14 +2,6 @@ import axios from "axios";
 
 // [id]
 
-// get All Products
-// export async function getAllProducts() {
-//   const res = await axios.get("https://fakestoreapi.com/products");
-//   const products = await res.data;
-//   console.log("products: ", products);
-//   return products;
-// }
-
 export async function getAllProducts() {
   const res = await axios
     .get("https://fakestoreapi.com/products")
@@ -24,11 +16,6 @@ export async function getAllProducts() {
 
 // get element by ID
 export async function getSingleProductRequest(context) {
-  //   const id = context.params.id;
-  //   const req = await axios.get("https://fakestoreapi.com/products/" + id);
-  //   const product = await req.json();
-  //   console.log("product: ", product);
-  //   return product;
   const id = context.params.id;
   const req = await fetch("https://fakestoreapi.com/products/" + id);
   const product = await req.json();
@@ -61,7 +48,6 @@ export const deleteProduct = async (id) => {
   await axios
     .delete(`https://fakestoreapi.com/products/${id}`)
     .then((res) => {
-      //   res.json();
       console.log("data: ", res.data);
       delete res.data;
     })

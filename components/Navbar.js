@@ -6,13 +6,11 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Link from "next/link";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   main: {
     margin: "4rem",
-    // marginTop: "4rem",
   },
   link: {
     textDecoration: "none",
@@ -61,11 +59,9 @@ export default function Navbar() {
               justifyContent: "flex-end",
               alignItems: "center",
             }}
-            // className={classes.groupButton}
           >
             <Button
               color="inherit"
-              // className={classes.link}
               style={{
                 fontWeight: "bold",
                 fontSize: "1.3rem",
