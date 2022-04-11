@@ -35,11 +35,6 @@ export default function FormDialog() {
   }
 
   const fileUploadHandler = async () => {
-    // console.log("title: ", title);
-    // console.log("price: ", price);
-    // console.log("description: ", description);
-    // console.log("image: ", image);
-    // console.log("category: ", category);
     console.log(selectedFile);
     const fd = new FormData();
     fd.append("image", selectedFile);
