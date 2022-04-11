@@ -6,6 +6,14 @@ import Image from "next/image";
 import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { breakpoints } from "@mui/system";
+import Link from "@mui/material/Link";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+
+function handleClick(event) {
+  event.preventDefault();
+  console.info("You clicked a breadcrumb.");
+}
 
 const SingleProduct = ({ product }) => {
   const { title, price, id, description, category, image } = product;
@@ -13,51 +21,68 @@ const SingleProduct = ({ product }) => {
   const breakpoint = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Card sx={{ margin: 5, padding: 8, boxShadow: 2 }}>
-      <Grid container direction={breakpoint ? "column" : "row"}>
-        {/* second Grid */}
-        <Grid item xs={12} sm={3}>
-          <Image alt="image" src={image} width="250" height="300" />
-        </Grid>
-
-        {/* first grid */}
-
-        <Grid container item xs={12} sm={9} direction="row">
-          <Grid item xs={12} sm={12}>
+    <>
+      <div role="presentation" onClick={handleClick} style={{ margin: "3rem" }}>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link underline="hover" color="#ffc400" href="/">
+            <ArrowBackIcon style={{ color: "#ffc400", fontSize: "1.5rem" }} />
             <Typography
-              component="div"
+              style={{ color: "#ffc400" }}
               variant="h5"
-              style={{ marginBottom: "1rem" }}
+              component="span"
             >
-              {title}
+              products
             </Typography>
+          </Link>
+        </Breadcrumbs>
+      </div>
+
+      <Card sx={{ margin: 5, marginTop: 14, padding: 8, boxShadow: 2 }}>
+        <Grid container direction={breakpoint ? "column" : "row"}>
+          {/* second Grid */}
+          <Grid item xs={12} sm={3}>
+            <Image alt="image" src={image} width="250" height="300" />
           </Grid>
-          <Grid item xs={12} sm={12}>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              {description}
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-              style={{
-                color: "#ffc400",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
-              }}
-            >
-              {price}$
-            </Typography>
+
+          {/* first grid */}
+
+          <Grid container item xs={12} sm={9} direction="row">
+            <Grid item xs={12} sm={12}>
+              <Typography
+                component="div"
+                variant="h5"
+                style={{ marginBottom: "1rem" }}
+              >
+                {title}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <Typography
+                variant="subtitle1"
+                color="text.secondary"
+                component="div"
+              >
+                {description}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <Typography
+                variant="subtitle1"
+                color="text.secondary"
+                component="div"
+                style={{
+                  color: "#ffc400",
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                }}
+              >
+                {price}$
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Card>
+      </Card>
+    </>
   );
 };
 
