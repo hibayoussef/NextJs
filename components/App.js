@@ -9,7 +9,6 @@ const App = () => {
   React.useEffect(() => {
     getAllProducts().then((response) => setProducts(response));
   }, []);
-  t;
 
   return (
     <>

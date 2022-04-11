@@ -29,6 +29,7 @@ const Product = ({ index, removeItem, product }) => {
   const breakpoint = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
   const { title, price, image, id } = product;
+
   return (
     <>
       <Grid container style={{ padding: 10 }}>
@@ -71,6 +72,7 @@ const Product = ({ index, removeItem, product }) => {
               aria-label="delete"
               onClick={() => {
                 removeItem(index);
+                handleClick;
                 console.log("id: ", index);
               }}
             >

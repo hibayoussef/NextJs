@@ -3,7 +3,6 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
 import Head from "next/head";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -19,15 +18,6 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
-
-const useStyles = makeStyles({
-  main: {
-    padding: "4rem ",
-  },
-  typo: {
-    color: "#ffc400 !impoertant",
-  },
-});
 
 function Products({ products }) {
   console.log("check: ", products);
