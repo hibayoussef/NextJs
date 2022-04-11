@@ -69,9 +69,9 @@ const Product = ({ index, removeItem, product }) => {
                 {" "}
                 <span
                   style={{
-                    color: "white",
-                    backgroundColor: "#ffc400",
-                    padding: 10,
+                    color: "#ffc400",
+                    fontWeight: "bold",
+                    fontSize: "1.1rem",
                   }}
                 >
                   More Details

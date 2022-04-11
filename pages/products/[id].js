@@ -12,7 +12,6 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 
 function handleClick(event) {
   event.preventDefault();
-  console.info("You clicked a breadcrumb.");
 }
 
 const SingleProduct = ({ product }) => {

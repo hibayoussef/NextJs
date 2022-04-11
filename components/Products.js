@@ -45,7 +45,6 @@ function Products({ products }) {
     deleteProduct(index);
     let clone = [...products];
     clone.splice(index, 1);
-    // setProducts(clone);
   }
 
   return (
@@ -64,7 +63,7 @@ function Products({ products }) {
             gutterBottom
             component="div"
             // className={classes.typo}
-            style={{ fontWeight: 600 }}
+            style={{ fontWeight: 600, color: "#ffc400" }}
           >
             Our Products
           </Typography>
@@ -84,7 +83,7 @@ function Products({ products }) {
         </Grid>
       </Grid>
       <Box sx={{ flexGrow: 1, margin: 8 }}>
-        <Grid container spacing={3}>
+        <Grid container spacing={5}>
           {products?.map((product, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
               <Item>
