@@ -11,11 +11,12 @@ const App = () => {
     getAllProducts().then((response) => setProducts(response));
   }, []);
 
-  console.log("products: ", products);
-
   function removeItem(index) {
     deleteProduct(index);
+    products.splice(index, 1);
   }
+
+  console.log("products: ", products);
   return (
     <>
       <Navbar />

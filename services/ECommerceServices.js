@@ -62,4 +62,6 @@ export const deleteProduct = async (id) => {
   const data = await response.json();
   console.log("data for delete: ", data);
   // getAllProducts();
+
+  return data;
 };
