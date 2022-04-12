@@ -13,10 +13,13 @@ const App = () => {
 
   function removeItem(index) {
     deleteProduct(index);
-    products.splice(index, 1);
+    const data = products.filter((i) => i.id !== index);
+    // products.splice(index, 1);
+    getAllProducts();
+    setProducts(data);
   }
 
-  console.log("products: ", products);
+  console.log("productssss: ", products);
   return (
     <>
       <Navbar />
