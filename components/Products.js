@@ -9,7 +9,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Dialog from "./Dialog";
 import Product from "./Product";
-import { deleteProduct } from "../services/ECommerceServices";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -19,16 +18,15 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function Products({ products }) {
+function Products({ products, removeItem }) {
   console.log("check: ", products);
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("sm"));
 
-  function removeItem(index) {
-    deleteProduct(index);
-    let clone = [...products];
-    clone.splice(index, 1);
-  }
+  // function removeItem(index) {
+  //   deleteProduct(index);
+  //   array.splice(index, 1);
+  // }
 
   return (
     <>

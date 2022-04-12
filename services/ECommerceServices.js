@@ -6,6 +6,7 @@ export async function getAllProducts() {
   const res = await axios
     .get("https://fakestoreapi.com/products")
     .then((res) => {
+      console.log("Hi in get file");
       const products = res.data;
       console.log("products: ", products);
       return products;
@@ -44,12 +45,21 @@ export async function getProductsOneByOne() {
 }
 
 // delete product
+// export const deleteProduct = async (id) => {
+//   await axios
+//     .delete(`https://fakestoreapi.com/products/${id}`)
+//     .then((res) => {
+//       console.log("data: ", res.data);
+//       delete res.data;
+//     })
+//     .catch((err) => console.log("error: ", err));
+// };
+
 export const deleteProduct = async (id) => {
-  await axios
-    .delete(`https://fakestoreapi.com/products/${id}`)
-    .then((res) => {
-      console.log("data: ", res.data);
-      delete res.data;
-    })
-    .catch((err) => console.log("error: ", err));
+  const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+    method: "DELETE",
+  });
+  const data = await response.json();
+  console.log("data for delete: ", data);
+  // getAllProducts();
 };
