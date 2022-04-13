@@ -11,15 +11,27 @@ const App = () => {
     getAllProducts().then((response) => setProducts(response));
   }, []);
 
+  console.log("productssss: ", products);
+
   function removeItem(index) {
-    deleteProduct(index);
-    const data = products.filter((i) => i.id !== index);
-    // products.splice(index, 1);
-    getAllProducts();
-    setProducts(data);
+    deleteProduct(index)
+      .then((res) => {
+        let p = products.filter((rec, i) => index != rec.id);
+        setProducts(p);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
-  console.log("productssss: ", products);
+  // function addItem(title, price, description, image, category) {
+  //   const product = addProduct(title, price, description, image, category);
+
+  //   const productData = [...products, product];
+  //   getAllProducts();
+  //   setProducts(productData);
+  // }
+
   return (
     <>
       <Navbar />

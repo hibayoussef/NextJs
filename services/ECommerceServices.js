@@ -64,3 +64,27 @@ export const deleteProduct = async (id) => {
 
   return data;
 };
+
+// export const addProduct = async (
+//   {title,
+//   price,
+//   description,
+//   image,
+//   category}
+// ) => {
+//   return await fetch("https://fakestoreapi.com/products", {
+//     method: "POST",
+//     body: JSON.stringify({
+//       title: title,
+//       price: price,
+//       description: description,
+//       image: image,
+//       category: category,
+//     }),
+//     headers: {
+//       "Content-type": "multipart/form-data",
+//     },
+//   })
+//     .then((res) => res.json())
+//     .then((json) => console.log(json));
+// };
