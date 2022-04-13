@@ -1,16 +1,15 @@
 import axios from "axios";
+import { config } from "../config";
 
 // [id]
 
 export async function getAllProducts() {
-  const res = await axios
-    .get("https://fakestoreapi.com/products")
-    .then((res) => {
-      console.log("Hi in get file");
-      const products = res.data;
-      console.log("products: ", products);
-      return products;
-    });
+  const res = await axios.get(`${config.baseURL}`).then((res) => {
+    console.log("Hi in get file");
+    const products = res.data;
+    console.log("products: ", products);
+    return products;
+  });
 
   return res;
 }
@@ -18,7 +17,7 @@ export async function getAllProducts() {
 // get element by ID
 export async function getSingleProductRequest(context) {
   const id = context.params.id;
-  const req = await fetch("https://fakestoreapi.com/products/" + id);
+  const req = await fetch(`${config.baseURL}/` + id);
   const product = await req.json();
   return {
     props: {
@@ -29,7 +28,7 @@ export async function getSingleProductRequest(context) {
 
 // get product by ID
 export async function getProductsOneByOne() {
-  const req = await fetch("https://fakestoreapi.com/products");
+  const req = await fetch(`${config.baseURL}`);
   const products = await req.json();
   const paths = products.map((product) => {
     return {
@@ -56,7 +55,7 @@ export async function getProductsOneByOne() {
 // };
 
 export const deleteProduct = async (id) => {
-  const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+  const response = await fetch(`${config.baseURL}/${id}`, {
     method: "DELETE",
   });
   const data = await response.json();

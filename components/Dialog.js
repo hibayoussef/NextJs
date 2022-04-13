@@ -7,6 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
+import { config } from "../config";
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
@@ -27,7 +28,7 @@ export default function FormDialog() {
     const fd = new FormData();
     fd.append("image", selectedFile);
     fd.append("data", JSON.stringify({ title, price, description, category }));
-    await axios.post("https://fakestoreapi.com/products", fd, {
+    await axios.post(`${config.baseURL}`, fd, {
       headers: {
         "Content-type": "multipart/form-data",
       },
